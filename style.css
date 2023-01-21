@@ -1,0 +1,268 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.menu {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+}
+  
+.menu:hover{
+    background-color: rgba(51, 51, 51, 0.146);
+    border-radius: 10px;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 30px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+}
+  
+.change .bar1 {
+    transform: translate(0, 11px) rotate(-45deg);
+    background-color: red;
+}
+  
+.change .bar2 {opacity: 0;}
+  
+.change .bar3 {
+    transform: translate(0, -11px) rotate(45deg);
+    background-color: red;
+}
+
+.main-header{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(47, 246, 47);
+    padding: 2vw;
+}
+
+.main-header img{
+    height: 3vw;
+    position: relative;
+    top: 0.5vw;
+}
+
+.main-container{
+    display: grid;
+    grid-template-rows: 0.5fr 4.9fr 0.5fr;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    background-color: rgba(128, 128, 128, 0.333);
+}
+
+.projects{
+    visibility: hidden;
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: rgba(93, 93, 250, 0.658);
+}
+
+.projects.show{
+    visibility: visible;
+}
+
+.inner-projects > div{
+    padding: 0.8vw;
+}
+
+.projects button{
+    background-color: transparent;
+    border-width: 0;
+    font-size: 1.4vw;
+}
+
+.projects img{
+    height: 2vw;
+    position: relative;
+    top: 0.5vw;
+}
+
+.title span{
+    font-size: 3vw;
+}
+
+.task-list.show{
+    width: 75vw;
+    left: unset;
+}
+
+.task-list{
+    width: 95vw;
+    height: 60px;
+    border-radius: 10px;
+    position: absolute;
+    left: 0px;
+    background-color: rgba(3, 180, 3, 0.553);
+    margin: 2vw;
+    text-align: center;
+    font-size: 2vw;
+    color: white;
+}
+
+.bg-image{
+    position: absolute;
+    height: 15vw;
+    top: 20vw;
+    left: 40vw;
+}
+
+.tasks.show{
+    width: 71vw;
+    right: unset;
+    left: 4vw;
+}
+
+.tasks{
+    position: relative;
+    right: 4vw;
+    margin-top: 8vw;
+    width: 90vw;
+}
+
+.task.show{
+    grid-template-columns: 1fr 0.2fr 0.1fr 0.25fr;
+}
+
+.task.complete{
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.task{
+    background-color: orange;
+    height: 3vw;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 0.15fr 0.1fr 0.15fr;
+    gap: 10px;
+    padding: 0.5vw;
+    margin-top: 5px;
+    font-size: 2vw;
+}
+
+.task input, .task select{
+    height: 2vw;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: green;
+    color: white;
+    border-width: 0px;
+}
+
+.task button{
+    position: relative;
+    bottom: 0.5vw;
+    height: 3vw;
+    width: 4vw;
+    background-color: transparent;
+    border-width: 0px;
+}
+
+.task img{
+    height: 2vw;
+    position: relative;
+}
+.new-task{
+    text-align: center;
+    margin-top: 1vw;
+}
+
+.new-task button{
+    border-radius: 10px;
+    font-size: 3vw;
+    color: red;
+    font-weight: bolder;
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0.468);
+}
+
+.new-task img{
+    height: 2vw;
+}
+
+.footer{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(13, 38, 54);
+    padding: 0.8vw;
+    color: white;
+}
+
+.footer a{
+    text-decoration: none;
+    color: red;
+    font-size: 2vw;
+}
+
+.footer span{
+    font-size: 2vw;
+}
+
+.footer img{
+    height: 3vw;
+    position: relative;
+    top: 0.8vw;
+    transition: all .5s;
+}
+
+.icons{
+    margin-top: 1vw;
+}
+
+.footer img:hover{
+    transform: rotate(3600deg);
+}
+
+.add-task{
+    position: fixed;
+    right: 1vh; 
+    bottom: 5.5vw;
+    background-color: transparent;
+    border-radius: 50%;
+    border-width: 0;
+}
+
+.add-task img{
+    height: 5vw;
+}
+
+.vertical, .horizontol{
+    margin: 1vw;
+    height: 1vh;
+    width: 3vw;
+    background-color: rgb(42, 185, 42);
+    transition: all 0.4s;
+}
+
+.vertical{
+    transform: rotate(90deg);
+    position: relative;
+    top: 1vw;
+}
+
+.horizontol{
+    /* transform: rotate(45deg); */
+    position: relative;
+    bottom: 0.5vw;
+}
+
+.vertical.adding{
+    transform: rotate(1485deg);
+    background-color: red;
+}
+
+.horizontol.adding{
+    transform: rotate(495deg);
+    background-color: red;
+}
