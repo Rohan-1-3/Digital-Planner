@@ -59,6 +59,15 @@
     background-color: rgba(128, 128, 128, 0.333);
 }
 
+.project-form{
+    position: absolute;
+    visibility: hidden;
+}
+
+.project-form.show{
+    visibility: visible;
+}
+
 .projects{
     visibility: hidden;
     padding: 1vw;
