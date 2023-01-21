@@ -26,31 +26,24 @@
     
         <main class="main">
             <nav class="projects">
+                
                 <div class="inner-projects">
                     <h1>Projects</h1>
                     <div>
                     <img src="./images/task_FILL0_wght400_GRAD0_opsz48.png" alt="1">
-                    <button class="all-task">
-                        All Task
-                    </button>
+                    <button id="project" class="all-task">All Task</button>
                     </div>
                     <div>
                         <img src="./images/today_FILL0_wght400_GRAD0_opsz48.png" alt="1">
-                        <button class="today">
-                            Today
-                        </button>
+                        <button id="project" class="today">Today</button>
                     </div>
                     <div>
                         <img src="./images/date_range_FILL0_wght400_GRAD0_opsz48.png" alt="1">
-                        <button class="this-week">
-                            This Week
-                        </button>
+                        <button id="project" class="this-week">This Week</button>
                     </div>
                     <div>
                         <img src="./images/outline_splitscreen_black_24dp.png" alt="1">
-                        <button class="any-time">
-                            Casual
-                        </button>
+                        <button id="project" class="any-time">Casual</button>
                     </div>
                 </div>
 
@@ -58,8 +51,19 @@
                     <h1>New Projects</h1>
                     <div class="new-project">
                         <img src="./images/outline_add_circle_outline_black_24dp.png" alt="+">
-                        <button>Add Project</button>
+                        <button class="add-project">Add Project</button>
                     </div>
+                </div>
+                <div class="project-popup">
+                    <form class= "project-form" action="post">
+                        <input type="text" class="projectAddPopup">
+                        <button class="add-button">
+                            <img src="./images/circel.png" alt="">
+                        </button>
+                        <button class="cancle-button">
+                            <img src="./images/cross.png" alt="">
+                        </button>
+                    </form>
                 </div>
             </nav>
     
