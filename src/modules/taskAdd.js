@@ -3,6 +3,7 @@ import cross from "./images/cross.png";
 import bgIconAfter from "./images/task-area-image-after.png";
 import bgIconBefore from "./images/task-area-image.png";
 
+const allTaskArray = [];
 const checkTaskExists = ()=>{
     const tasksSection = document.querySelector(".tasks");
     const bgImage = document.querySelector(".bg-image");
@@ -80,11 +81,14 @@ const addNewTask = ()=>{
     const addTaskForm = document.querySelector(".add-task-form");
     const newTask = new Task(taskFormNameValue, taskFormDateValue, taskFormTypeValue);
     newTask.addingNewTask();// calling function
+
+    allTaskArray.push(newTask);
     // resetting form value
     taskFormName.value = "";
     taskFormDate.value = new Date().toJSON().slice(0,10);
     taskFormType.value = "Normal";
     addTaskForm.classList.remove("adding");
+    console.log(allTaskArray);
 }
 
 const addNewTaskEvent = ()=>{
