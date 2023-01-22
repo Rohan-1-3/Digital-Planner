@@ -33,7 +33,10 @@ const DOManimation = ()=>{
         addKeyVertical.classList.toggle("adding");
         addKeyHorizontol.classList.toggle("adding");// animation for add icon
         addTaskForm.classList.toggle("adding");// makes task form visible
+
+        const taskFormDate = document.querySelector(".form-date");
+        taskFormDate.value = new Date().toJSON().slice(0,10);
     });
 }
 
-export default DOManimation
+export default DOManimation;
