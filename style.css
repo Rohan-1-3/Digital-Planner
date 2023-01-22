@@ -275,3 +275,49 @@
     transform: rotate(495deg);
     background-color: red;
 }
+
+.add-task-form{
+    visibility: hidden;
+    position: fixed;
+    right: 40vw;
+    top: 30vh;
+    background-color: rgba(128, 128, 128, 0.689);
+    padding: 3vw;
+    border-radius: 10px;
+    color: white;
+}
+
+.task-form fieldset{
+    height: 5vw;
+    padding: 0.4vw;
+}
+
+.task-form input, .task-form select{
+    height: 100%;
+    width: 100%;
+    border-width: 0px;
+    border-radius: 10px;
+    padding-left: 1vw;
+}
+
+.form-buttons{
+    margin-top: 1vw;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-buttons button{
+    width: 6vw;
+    height: 2vw;
+    border-width: 0px;
+    border-radius: 10px;
+    color: white;
+}
+
+.add-task-form.adding{
+    visibility: visible;
+}
+
+.add-task-form.show{
+    right: 30vw;
+}
