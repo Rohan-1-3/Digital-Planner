@@ -1,4 +1,4 @@
-import { DOManimation, accessProjects, addProject } from "./modules/initialDOM";
+import { DOManimation, accessProjects} from "./modules/initialDOM";
 
 
 // console.log(newProjectDiv.children)

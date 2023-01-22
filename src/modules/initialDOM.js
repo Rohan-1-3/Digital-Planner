@@ -1,4 +1,6 @@
-import taskIcon from "/Users/Rohan/Desktop/JS_Practice/JavaScriptCourseOdinProject/ToDoList/dist/images/task_FILL0_wght400_GRAD0_opsz48.png"
+import taskIcon from "./images/task_FILL0_wght400_GRAD0_opsz48.png";
+import crossIcon from "./images/cross.png";
+
 const DOManimation = ()=>{
     const menu = document.querySelector(".menu");
     const navBar = document.querySelector(".projects");
@@ -11,7 +13,7 @@ const DOManimation = ()=>{
     const addTaskForm = document.querySelector(".add-task-form");
 
 
-    menu.addEventListener("click", ()=>{
+    menu.addEventListener("click", ()=>{ // for menu bar visible
         menu.classList.toggle("change");
         navBar.classList.toggle("show");    
         taskArea.classList.toggle("show");
@@ -20,14 +22,14 @@ const DOManimation = ()=>{
         task.classList.toggle("show");
     });
 
-    addKey.addEventListener("click", ()=>{
+    addKey.addEventListener("click", ()=>{ // for adding task 
         addKeyVertical.classList.toggle("adding");
-        addKeyHorizontol.classList.toggle("adding");
-        addTaskForm.classList.toggle("adding");
+        addKeyHorizontol.classList.toggle("adding");// animation for add icon
+        addTaskForm.classList.toggle("adding");// makes task form visible
     });
 }
 
-const accessProjects = ()=>{
+const accessProjects = ()=>{ // access names of projects
     const projects = document.querySelectorAll("#project");
     const projectTitle = document.querySelector(".task-list");
 
@@ -44,35 +46,45 @@ const addButton = document.querySelector(".add-button");
 const newProjects = document.querySelector(".new-projects");
 const cancelButton = document.querySelector(".cancle-button")
 
-const addProject = ()=>{
+const addProject = ()=>{// creates new project div and appends before the add button
     const newProjectName = document.querySelector(".projectAddPopup");
+
     const newProjectDiv = document.createElement("div");
+    newProjectDiv.classList.add("new-project-title")
     newProjects.insertBefore(newProjectDiv, newProjects.children[newProjects.childElementCount-1]);
+
     const newProjectImage = new Image();
     newProjectImage.src = taskIcon;
     newProjectDiv.appendChild(newProjectImage);
+
     const newProjectButton = document.createElement("button");
     newProjectButton.id = "project";
     newProjectButton.textContent = newProjectName.value;
     newProjectDiv.appendChild(newProjectButton);
     newProjectName.value= "";
     projectForm.classList.remove("show");
-    const removeProject = document.createElement("img");
+
+    const crossImage = new Image();
+    crossImage.src = crossIcon;
+    newProjectDiv.appendChild(crossImage);
+    
     accessProjects();
 }
 
 addNewProject.addEventListener("click", ()=>{
-    projectForm.classList.add("show");
+    projectForm.classList.add("show");// form for new project 
 });
 
 addButton.addEventListener("click", (e)=>{
     e.preventDefault();
-    addProject();
+    addProject();// submits form
 })
 
 cancelButton.addEventListener("click", (e)=>{
+    const newProjectName = document.querySelector(".projectAddPopup")
     e.preventDefault();
     projectForm.classList.remove("show");
+    newProjectName.value= ""; // cancels the form execution
 })
 
 export {DOManimation, accessProjects,addProject};
