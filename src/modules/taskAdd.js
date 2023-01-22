@@ -1,24 +1,31 @@
 import circle from "./images/circel.png";
 import cross from "./images/cross.png";
-import bgIcon from "./images/task-area-image-after.png";
+import bgIconAfter from "./images/task-area-image-after.png";
+import bgIconBefore from "./images/task-area-image.png";
 
 const checkTaskExists = ()=>{
     const tasksSection = document.querySelector(".tasks");
     const bgImage = document.querySelector(".bg-image");
-    bgImage.src = bgIcon;
-    if(tasksSection.children[0].textContent === "No Task Yet!"){
-        tasksSection.children[0].remove();
+    if(tasksSection.children[0].textContent === "No Task Yet!"){// check if there are any task
+        tasksSection.children[0].remove();// if task removes the h1
+        bgImage.src = bgIconAfter;// chnages bg image
+    }
+    else if(tasksSection.childElementCount === 1){
+        const freeTimePara = document.createElement("h1");
+        freeTimePara.textContent = "No Task Yet!";
+        tasksSection.insertBefore(freeTimePara, tasksSection.children[0]);
+        bgImage.src = bgIconBefore;
     }
 }
 
-const Task = class{
+const Task = class{// constructor for collecting newTask info
     constructor(title, date, type){
         this.title = title;
         this.date = date;
         this.type = type;
     }
     
-    sth(){
+    addingNewTask(){// creates and appends new task 
         const tasksSection = document.querySelector(".tasks");
 
         const newTaskDiv = document.createElement("div");
@@ -50,6 +57,15 @@ const Task = class{
         taskButtons.appendChild(doneIcon);
         taskButtons.appendChild(deleteIcon);
         checkTaskExists();
+
+        doneIcon.addEventListener("click", ()=>{
+            ((doneIcon.parentNode).parentNode).classList.toggle("complete")
+        })
+
+        deleteIcon.addEventListener("click", ()=>{
+            ((deleteIcon.parentNode).parentNode).remove();
+            checkTaskExists();
+        })
     }
 }
 
@@ -57,14 +73,14 @@ const addNewTask = ()=>{
     const taskFormName = document.querySelector(".form-name");
     const taskFormDate = document.querySelector(".form-date");
     const taskFormType = document.querySelector(".form-type");
-
+    // gets value from the form
     const taskFormNameValue = taskFormName.value;
     const taskFormDateValue = taskFormDate.value
     const taskFormTypeValue = taskFormType.value
     const addTaskForm = document.querySelector(".add-task-form");
     const newTask = new Task(taskFormNameValue, taskFormDateValue, taskFormTypeValue);
-    newTask.sth();
-    
+    newTask.addingNewTask();// calling function
+    // resetting form value
     taskFormName.value = "";
     taskFormDate.value = new Date().toJSON().slice(0,10);
     taskFormType.value = "Normal";
@@ -73,15 +89,28 @@ const addNewTask = ()=>{
 
 const addNewTaskEvent = ()=>{
     const addTaskButton = document.querySelector(".add-task-button");
+    const cancelTaskButton = document.querySelector(".cancel-task-button");
     const addKeyVertical = document.querySelector(".vertical");
     const addKeyHorizontol = document.querySelector(".horizontol");
 
     addTaskButton.addEventListener("click", (e)=>{
         e.preventDefault();
         addNewTask();
-        addKeyVertical.classList.toggle("adding");
-        addKeyHorizontol.classList.toggle("adding");// animation for add icon 
+        addKeyVertical.classList.remove("adding");
+        addKeyHorizontol.classList.remove("adding");// animation for add icon 
+        const mainContainer = document.querySelector(".main-container");
+        mainContainer.classList.remove("show");
+    })
+
+    cancelTaskButton.addEventListener("click", (e)=>{
+        e.preventDefault();
+        addKeyVertical.classList.remove("adding");
+        addKeyHorizontol.classList.remove("adding");// animation for add icon 
+        const mainContainer = document.querySelector(".main-container");
+        mainContainer.classList.remove("show");
+        (((cancelTaskButton.parentNode).parentNode).parentNode).classList.remove("adding");
     })
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export {addNewTaskEvent};

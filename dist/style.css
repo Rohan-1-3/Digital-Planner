@@ -37,8 +37,9 @@
 
 .main-header{
     display: flex;
+    background-color: white;
     justify-content: space-between;
-    border-bottom: 2px solid rgb(47, 246, 47);
+    /* border-bottom: 2px solid rgb(47, 246, 47); */
     padding: 2vw;
     position: sticky;
     top: 1px;
@@ -55,7 +56,12 @@
     grid-template-rows: 0.5fr 4.9fr 0.5fr;
 }
 
+.main-container.show{
+    opacity: 0.5;
+    pointer-events: none;
+}
 .main{
+    position: relative;
     display: grid;
     grid-template-columns: 2fr 8fr;
     background-color: rgba(128, 128, 128, 0.333);
@@ -103,6 +109,10 @@
     font-size: 3vw;
 }
 
+.tasks h1{
+    text-align: center;
+}
+
 .task-list.show{
     width: 75vw;
     left: unset;
@@ -147,19 +157,22 @@
 
 .task.complete{
     opacity: 0.3;
-    pointer-events: none;
+    background-color: green;
+    font-size: 1.8vw;
 }
 
 .task{
     background-color: orange;
-    height: 3vw;
+    min-height: 3vw;
+    max-height: auto;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: 1fr 0.25fr 0.1fr 0.15fr;
+    grid-template-columns: 1fr 0.3fr 0.25fr 0.15fr;
     gap: 10px;
     padding: 0.5vw;
     margin-top: 5px;
     font-size: 2vw;
+    transition: all .5s;
 }
 
 .tasks h1{
@@ -168,15 +181,6 @@
 
 .task.header{
     background-color: rgba(255, 255, 255, 0.527);
-}
-
-.task input, .task select{
-    height: 2vw;
-    border-radius: 10px;
-    padding-left: 10px;
-    background-color: green;
-    color: white;
-    border-width: 0px;
 }
 
 .task-option{

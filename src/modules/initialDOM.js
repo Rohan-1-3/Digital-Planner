@@ -16,7 +16,7 @@ const DOManimation = ()=>{
         if(newProjects.childElementCount >2){
             const newProjectDiv = document.querySelectorAll(".new-project-title");
             newProjectDiv.forEach((x)=>{
-                x.classList.toggle("show");
+                x.classList.toggle("show");// for removing the newProjectsForm with menu closing
             })
         }
         menu.classList.toggle("change");
@@ -34,6 +34,9 @@ const DOManimation = ()=>{
         addKeyHorizontol.classList.toggle("adding");// animation for add icon
         addTaskForm.classList.toggle("adding");// makes task form visible
 
+        ((menu.parentNode).parentNode).classList.add("show")
+
+        // when form opens date is set initially to todays date
         const taskFormDate = document.querySelector(".form-date");
         taskFormDate.value = new Date().toJSON().slice(0,10);
     });
