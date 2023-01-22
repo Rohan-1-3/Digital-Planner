@@ -98,6 +98,32 @@
             </div>
         </footer>
     </div>
+    <div class="add-task-form"> 
+        <form class="task-form" action="post">
+            <fieldset>
+                <legend>Task</legend>
+                <input type="text" name="name" id="form-name">
+            </fieldset>
+
+            <fieldset>
+                <legend>Date</legend>
+                <input type="date" name="name" id="form-name">
+            </fieldset>
+
+            <fieldset>
+                <legend>Type</legend>
+                <select name="" id="">
+                    <option style="background-color: green;" value="">Normal</option>
+                    <option style="background-color: orange;" value="">Urgent</option>
+                    <option style="background-color: red;" value="">Immediate</option>
+                </select>
+            </fieldset>
+            <div class="form-buttons">
+                <button class="add-task-button" style="background-color:green">Submit</button>
+                <button class="cancel-task-button" style="background-color: red;">Cancel</button>
+            </div>
+        </form>
+    </div>
 
     <script src="main.js"></script>
 </body>

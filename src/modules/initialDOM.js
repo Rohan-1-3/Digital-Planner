@@ -8,12 +8,14 @@ const DOManimation = ()=>{
     const addKey = document.querySelector(".add-task")
     const addKeyVertical = document.querySelector(".vertical");
     const addKeyHorizontol = document.querySelector(".horizontol");
+    const addTaskForm = document.querySelector(".add-task-form");
 
 
     menu.addEventListener("click", ()=>{
         menu.classList.toggle("change");
         navBar.classList.toggle("show");    
         taskArea.classList.toggle("show");
+        addTaskForm.classList.toggle("show");
         tasks.classList.toggle("show");
         task.classList.toggle("show");
     });
@@ -21,6 +23,7 @@ const DOManimation = ()=>{
     addKey.addEventListener("click", ()=>{
         addKeyVertical.classList.toggle("adding");
         addKeyHorizontol.classList.toggle("adding");
+        addTaskForm.classList.toggle("adding");
     });
 }
 
