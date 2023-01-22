@@ -74,6 +74,11 @@
                 </div>
                 <div class="tasks">
                     <h1 style="text-align: center;">No Task Yet!</h1>
+                    <div class="task header">
+                        <p>Task Name</p>
+                        <p>Date</p>
+                        <p>Status</p>
+                    </div>
                 </div>
                 <button class="add-task">
                     <div class="vertical"></div>
@@ -102,20 +107,20 @@
         <form class="task-form" action="post">
             <fieldset>
                 <legend>Task</legend>
-                <input type="text" name="name" id="form-name">
+                <input type="text" name="name" class="form-name" autocomplete="off">
             </fieldset>
 
             <fieldset>
                 <legend>Date</legend>
-                <input type="date" name="name" id="form-name">
+                <input type="date" name="name" class="form-date">
             </fieldset>
 
             <fieldset>
                 <legend>Type</legend>
-                <select name="" id="">
-                    <option style="background-color: green;" value="">Normal</option>
-                    <option style="background-color: orange;" value="">Urgent</option>
-                    <option style="background-color: red;" value="">Immediate</option>
+                <select name="type" class="form-type">
+                    <option value="Normal" style="background-color: green;" value="">Normal</option>
+                    <option value="Urgent" style="background-color: orange;" value="">Urgent</option>
+                    <option value="Immediate" style="background-color: red;" value="">Immediate</option>
                 </select>
             </fieldset>
             <div class="form-buttons">
