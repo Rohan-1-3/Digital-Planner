@@ -39,7 +39,6 @@
     display: flex;
     background-color: white;
     justify-content: space-between;
-    /* border-bottom: 2px solid rgb(47, 246, 47); */
     padding: 2vw;
     position: sticky;
     top: 1px;
@@ -60,6 +59,7 @@
     opacity: 0.5;
     pointer-events: none;
 }
+
 .main{
     position: relative;
     display: grid;
@@ -292,7 +292,7 @@
     position: fixed;
     right: 40vw;
     top: 30vh;
-    background-color: rgba(128, 128, 128, 0.689);
+    background-color: rgba(0, 0, 0, 0.612);
     padding: 3vw;
     border-radius: 10px;
     color: white;
