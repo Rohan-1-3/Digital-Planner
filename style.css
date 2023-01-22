@@ -321,3 +321,15 @@
 .add-task-form.show{
     right: 30vw;
 }
+
+.new-project-title{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    padding: 0.4vw;
+}
+
+.new-project-title button{
+    text-align: left;
+    position: relative;
+    top: 0.5vw;
+}
