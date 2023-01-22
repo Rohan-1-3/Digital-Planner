@@ -328,6 +328,10 @@
     padding: 0.4vw;
 }
 
+.new-project-title.show{
+    position: absolute;
+}
+
 .new-project-title button{
     text-align: left;
     position: relative;

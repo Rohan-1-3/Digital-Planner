@@ -1,7 +1,7 @@
-import { DOManimation, accessProjects} from "./modules/initialDOM";
+import DOManimation from "./modules/initialDOM";
+import { accessProjects, projectAddingEvents } from "./modules/project";
 
 
-// console.log(newProjectDiv.children)
 DOManimation();
-accessProjects();   
-// addProject();
+accessProjects();
+projectAddingEvents();
