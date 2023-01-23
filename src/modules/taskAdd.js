@@ -2,7 +2,6 @@ import circle from "./images/circel.png";
 import cross from "./images/cross.png";
 import bgIconAfter from "./images/task-area-image-after.png";
 import bgIconBefore from "./images/task-area-image.png";
-import ath from "./timeWiseTasks";
 
 
 // const projectsObject = {};
@@ -105,8 +104,8 @@ const addNewTask = ()=>{
 
     // gets value from the form
     const taskFormNameValue = taskFormName.value;
-    const taskFormDateValue = taskFormDate.value
-    const taskFormTypeValue = taskFormType.value
+    const taskFormDateValue = taskFormDate.value;
+    const taskFormTypeValue = taskFormType.value;
     const status = "incomplete";
     const addTaskForm = document.querySelector(".add-task-form");
     const newTask = new Task(taskProjectName ,taskFormNameValue, taskFormDateValue, taskFormTypeValue, status);
@@ -126,7 +125,6 @@ const addNewTask = ()=>{
     addTaskForm.classList.remove("adding");
     // console.log(projectsArray);
     // console.log(projectsObject);
-    ath();
 }
 
 const addNewTaskEvent = ()=>{

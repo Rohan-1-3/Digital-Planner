@@ -1,6 +1,7 @@
 import taskIcon from "./images/task_FILL0_wght400_GRAD0_opsz48.png";
 import crossIcon from "./images/cross.png";
 import { Task, projectsArray, checkTaskExists } from "./taskAdd";
+import { addButton as plusButton } from "./timeWiseTasks";
 
 const addNewProject = document.querySelector(".new-project");
 const projectForm = document.querySelector(".project-form");
@@ -30,6 +31,7 @@ const accessProjects = ()=>{ // access names of projects
     const projectTitle = document.querySelector(".task-list");
     projects.forEach((project)=>{
         project.addEventListener("click", ()=>{
+            plusButton.classList.remove("hide");
             if(projectTitle.childNodes[1].textContent === project.textContent) return false;
             projectTitle.childNodes[1].textContent = project.textContent;
             sth();

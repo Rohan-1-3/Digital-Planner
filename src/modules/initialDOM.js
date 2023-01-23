@@ -1,4 +1,5 @@
 import {projectForm,newProjects} from "./project";
+import { getAllTask, getTodayTasks, getWeekTasks } from "./timeWiseTasks";
 
 const DOManimation = ()=>{
     const menu = document.querySelector(".menu");
@@ -40,6 +41,9 @@ const DOManimation = ()=>{
         const taskFormDate = document.querySelector(".form-date");
         taskFormDate.value = new Date().toJSON().slice(0,10);
     });
+    getAllTask();
+    getTodayTasks();
+    getWeekTasks();
 }
 
 export default DOManimation;
