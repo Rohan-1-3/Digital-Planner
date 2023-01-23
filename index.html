@@ -128,6 +128,31 @@
             </div>
         </form>
     </div>
+    <div class="edit-task-form"> 
+        <form class="task-form" action="post">
+            <fieldset>
+                <legend>Task</legend>
+                <input type="text" name="name" class="edit-name" autocomplete="off">
+            </fieldset>
+
+            <fieldset>
+                <legend>Date</legend>
+                <input type="date" name="name" class="edit-date">
+            </fieldset>
+
+            <fieldset>
+                <legend>Type</legend>
+                <select name="type" class="edit-type">
+                    <option value="Normal" style="background-color: green;" value="">Normal</option>
+                    <option value="Urgent" style="background-color: orange;" value="">Urgent</option>
+                    <option value="Immediate" style="background-color: red;" value="">Immediate</option>
+                </select>
+            </fieldset>
+            <div class="form-buttons">
+                <button class="edit-task-button" style="background-color:green">Submit</button>
+            </div>
+        </form>
+    </div>
     <script src="main.js"></script>
 </body>
 </html>
