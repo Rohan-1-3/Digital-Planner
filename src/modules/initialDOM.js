@@ -11,7 +11,7 @@ const DOManimation = ()=>{
     const addKeyHorizontol = document.querySelector(".horizontol");
     const addTaskForm = document.querySelector(".add-task-form");
 
-
+    taskArea.children[0].textContent = "Casual";
     menu.addEventListener("click", ()=>{ // for menu bar visible
         if(newProjects.childElementCount >2){
             const newProjectDiv = document.querySelectorAll(".new-project-title");

@@ -3,7 +3,8 @@ import cross from "./images/cross.png";
 import bgIconAfter from "./images/task-area-image-after.png";
 import bgIconBefore from "./images/task-area-image.png";
 
-const allTaskArray = [];
+// const projectsObject = {};
+const projectsArray = [];
 const checkTaskExists = ()=>{
     const tasksSection = document.querySelector(".tasks");
     const bgImage = document.querySelector(".bg-image");
@@ -20,7 +21,8 @@ const checkTaskExists = ()=>{
 }
 
 const Task = class{// constructor for collecting newTask info
-    constructor(title, date, type){
+    constructor(project,title, date, type){
+        this.project = project
         this.title = title;
         this.date = date;
         this.type = type;
@@ -68,27 +70,36 @@ const Task = class{// constructor for collecting newTask info
             checkTaskExists();
         })
     }
+
 }
 
 const addNewTask = ()=>{
     const taskFormName = document.querySelector(".form-name");
     const taskFormDate = document.querySelector(".form-date");
     const taskFormType = document.querySelector(".form-type");
+    const taskProjectName = document.querySelector(".task-list").children[0].textContent;
+
     // gets value from the form
     const taskFormNameValue = taskFormName.value;
     const taskFormDateValue = taskFormDate.value
     const taskFormTypeValue = taskFormType.value
     const addTaskForm = document.querySelector(".add-task-form");
-    const newTask = new Task(taskFormNameValue, taskFormDateValue, taskFormTypeValue);
+    const newTask = new Task(taskProjectName ,taskFormNameValue, taskFormDateValue, taskFormTypeValue);
     newTask.addingNewTask();// calling function
+    projectsArray.push(newTask);
 
-    allTaskArray.push(newTask);
+    
+    // projectsArray.push(taskTitle.children[0].textContent);
+    // const uniqueProjects = [...new Set(projectsArray)];
+    // projectsObject.task = uniqueProjects;
+
     // resetting form value
     taskFormName.value = "";
     taskFormDate.value = new Date().toJSON().slice(0,10);
     taskFormType.value = "Normal";
     addTaskForm.classList.remove("adding");
-    console.log(allTaskArray);
+    console.log(projectsArray);
+    // console.log(projectsObject);
 }
 
 const addNewTaskEvent = ()=>{
@@ -117,4 +128,4 @@ const addNewTaskEvent = ()=>{
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export {addNewTaskEvent};
+export {addNewTaskEvent, projectsArray, Task, checkTaskExists};
