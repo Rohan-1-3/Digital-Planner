@@ -44,6 +44,10 @@ const accessProjects = ()=>{ // access names of projects
 
 const addProject = ()=>{// creates new project div and appends before the add button
     const newProjectName = document.querySelector(".projectAddPopup");
+
+    if(newProjectName.value === ""){
+        return false;
+    }
     for(let i=0;i<projectsName.length;i+=1){// check if the project already exists
         if(newProjectName.value.toLowerCase() === projectsName[i]){
             newProjectName.style.borderColor = "red";

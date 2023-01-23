@@ -107,12 +107,17 @@ const addNewTask = ()=>{
     const taskFormTypeValue = taskFormType.value;
     const status = "incomplete";
 
+    if(taskFormName.value === ""){
+        alert("Enter some Task Name")
+        return false;
+    }
     for(let i=0;i<projectsArray.length;i+=1){// check if the project already exists
         if(taskFormNameValue.toLowerCase() === projectsArray[i].title.toLowerCase()){
             alert("Task Already Exists");
             return false;
         }
     }
+    
 
     const newTask = new Task(taskProjectName ,taskFormNameValue, taskFormDateValue, taskFormTypeValue, status);
     newTask.addingNewTask();// calling function
