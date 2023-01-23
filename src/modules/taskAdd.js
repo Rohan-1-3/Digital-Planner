@@ -1,7 +1,9 @@
 import circle from "./images/circel.png";
 import cross from "./images/cross.png";
+import edit from "./images/edit.png";
 import bgIconAfter from "./images/task-area-image-after.png";
 import bgIconBefore from "./images/task-area-image.png";
+import editTask from "./editTaskDetails";
 
 // const projectsObject = {};
 const projectsArray = [];
@@ -49,6 +51,10 @@ const Task = class{// constructor for collecting newTask info
         const deleteIcon = new Image();
         deleteIcon.src = cross;
 
+        const editIcon = new Image();
+        editIcon.classList.add("edit-icon")
+        editIcon.src = edit;
+
         if(this.status === "complete"){
             newTaskDiv.classList.add("complete");
         }
@@ -60,6 +66,7 @@ const Task = class{// constructor for collecting newTask info
         newTaskDiv.appendChild(taskButtons);
         taskButtons.appendChild(doneIcon);
         taskButtons.appendChild(deleteIcon);
+        taskButtons.appendChild(editIcon);
         checkTaskExists();
 
         doneIcon.addEventListener("click", ()=>{
@@ -102,7 +109,7 @@ const addNewTask = ()=>{
     const taskProjectName = document.querySelector(".task-list").children[0].textContent;
 
     // gets value from the form
-    const taskFormNameValue = `${taskFormName.value}(${taskProjectName})`;
+    const taskFormNameValue = `${taskFormName.value} (${taskProjectName})`;
     const taskFormDateValue = taskFormDate.value;
     const taskFormTypeValue = taskFormType.value;
     const status = "incomplete";
@@ -122,6 +129,7 @@ const addNewTask = ()=>{
     const newTask = new Task(taskProjectName ,taskFormNameValue, taskFormDateValue, taskFormTypeValue, status);
     newTask.addingNewTask();// calling function
     projectsArray.push(newTask);
+    console.log(projectsArray);
     // console.log(newTask);
 
     
@@ -134,7 +142,7 @@ const addNewTask = ()=>{
     taskFormType.value = "Normal";
     // console.log(projectsArray);
     // console.log(projectsObject);
-
+    editTask();
     return 0;
 }
 

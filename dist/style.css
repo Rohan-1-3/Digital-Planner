@@ -288,7 +288,7 @@
     background-color: red;
 }
 
-.add-task-form{
+.add-task-form, .edit-task-form{
     visibility: hidden;
     position: fixed;
     right: 40vw;
@@ -326,11 +326,11 @@
     color: white;
 }
 
-.add-task-form.adding{
+.add-task-form.adding, .edit-task-form.adding{
     visibility: visible;
 }
 
-.add-task-form.show{
+.add-task-form.show, .edit-task-form.show{
     right: 30vw;
 }
 

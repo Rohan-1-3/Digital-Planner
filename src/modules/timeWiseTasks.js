@@ -1,4 +1,5 @@
 import isSameISOWeek from "date-fns/isSameISOWeek";
+import editTask from "./editTaskDetails";
 import { checkTaskExists, projectsArray, Task } from "./taskAdd";
 
 

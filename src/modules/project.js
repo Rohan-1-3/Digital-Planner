@@ -2,6 +2,7 @@ import taskIcon from "./images/task_FILL0_wght400_GRAD0_opsz48.png";
 import crossIcon from "./images/cross.png";
 import { Task, projectsArray, checkTaskExists } from "./taskAdd";
 import { addButton as plusButton } from "./timeWiseTasks";
+import editTask from "./editTaskDetails";
 
 const addNewProject = document.querySelector(".new-project");
 const projectForm = document.querySelector(".project-form");
@@ -36,6 +37,7 @@ const accessProjects = ()=>{ // access names of projects
             if(projectTitle.childNodes[1].textContent === project.textContent) return false;
             projectTitle.childNodes[1].textContent = project.textContent;
             sth();
+            editTask();
             return 0;
         })
     })
@@ -93,6 +95,12 @@ const addProject = ()=>{// creates new project div and appends before the add bu
             for(let i=0;i<=projectsArray.length;i+=1){// when project is deleted the project's all task gets deleted
                 if(deletedProjectName === projectsArray[i].project){
                     projectsArray.splice(i,1);
+                }
+            }
+
+            for(let i =0; i<=projectsName.length;i+=1){
+                if(deletedProjectName === projectsName[i]){
+                    projectsName.splice(i,1);
                 }
             }
             (crossImage.parentNode).remove();
