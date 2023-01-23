@@ -2,6 +2,8 @@ import circle from "./images/circel.png";
 import cross from "./images/cross.png";
 import bgIconAfter from "./images/task-area-image-after.png";
 import bgIconBefore from "./images/task-area-image.png";
+import ath from "./timeWiseTasks";
+
 
 // const projectsObject = {};
 const projectsArray = [];
@@ -124,6 +126,7 @@ const addNewTask = ()=>{
     addTaskForm.classList.remove("adding");
     // console.log(projectsArray);
     // console.log(projectsObject);
+    ath();
 }
 
 const addNewTaskEvent = ()=>{
