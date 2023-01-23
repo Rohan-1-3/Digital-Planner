@@ -66,6 +66,14 @@ const Task = class{// constructor for collecting newTask info
         })
 
         deleteIcon.addEventListener("click", ()=>{
+            const removedTaskTitle = ((deleteIcon.parentNode).parentNode).children[0].textContent;
+            for(let i=0;i<projectsArray.length;i+=1){// removes the task from the main array
+                if(removedTaskTitle === projectsArray[i].title){
+                    // console.log(i);
+                    projectsArray.splice(i,1);
+                }
+            }
+            // console.log(projectsArray);
             ((deleteIcon.parentNode).parentNode).remove();
             checkTaskExists();
         })

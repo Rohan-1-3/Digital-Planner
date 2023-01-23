@@ -1,6 +1,6 @@
 import taskIcon from "./images/task_FILL0_wght400_GRAD0_opsz48.png";
 import crossIcon from "./images/cross.png";
-import { Task, projectsArray, checkTaskExists } from "./taskAdd";
+import { Task, projectsArray } from "./taskAdd";
 
 const addNewProject = document.querySelector(".new-project");
 const projectForm = document.querySelector(".project-form");
