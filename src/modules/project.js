@@ -1,6 +1,6 @@
 import taskIcon from "./images/task_FILL0_wght400_GRAD0_opsz48.png";
 import crossIcon from "./images/cross.png";
-import { Task, projectsArray } from "./taskAdd";
+import { Task, projectsArray, checkTaskExists } from "./taskAdd";
 
 const addNewProject = document.querySelector(".new-project");
 const projectForm = document.querySelector(".project-form");
@@ -11,25 +11,26 @@ const tasksSection = document.querySelector(".tasks");
 
 
 const sth = ()=>{
-    while(tasksSection.childElementCount>1){
+    while(tasksSection.childElementCount>1){// removes the current projects tasks for new selected project
         tasksSection.lastChild.remove();
     }
     const taskProjectName = document.querySelector(".task-list").children[0].textContent;
-    for(let i=0;i<projectsArray.length;i+=1){
+    for(let i=0;i<projectsArray.length;i+=1){// taskes value from array and appends the seleceted projects task
         if(taskProjectName === projectsArray[i].project){
             const newTask = new Task(projectsArray[i].project,projectsArray[i].title,
-                projectsArray[i].date,projectsArray[i].type)
+                projectsArray[i].date,projectsArray[i].type, projectsArray[i].status);
             newTask.addingNewTask();
         }
     }
+    checkTaskExists();
 }
 
 const accessProjects = ()=>{ // access names of projects
     const projects = document.querySelectorAll("#project");
     const projectTitle = document.querySelector(".task-list");
-
     projects.forEach((project)=>{
         project.addEventListener("click", ()=>{
+            if(projectTitle.childNodes[1].textContent === project.textContent) return false;
             projectTitle.childNodes[1].textContent = project.textContent;
             sth();
         })
@@ -60,7 +61,23 @@ const addProject = ()=>{// creates new project div and appends before the add bu
     newProjectDiv.appendChild(crossImage);
 
     crossImage.addEventListener("click", ()=>{
-        (crossImage.parentNode).remove();
+        const deletedProjectName = (crossImage.parentNode).children[1].textContent;
+        const projectTitle = document.querySelector(".task-list");
+        if(tasksSection.childElementCount === 1){
+            (crossImage.parentNode).remove();
+            projectTitle.childNodes[1].textContent = "Casual";
+            sth();
+        }
+        else{
+            for(let i=0;i<=projectsArray.length;i+=1){// when project is deleted the project's all task gets deleted
+                if(deletedProjectName === projectsArray[i].project){
+                    projectsArray.splice(i,1);
+                }
+            }
+            (crossImage.parentNode).remove();
+            projectTitle.childNodes[1].textContent = "Casual";
+            sth();
+        }
     })
     console.log(projectsArray)
     accessProjects();

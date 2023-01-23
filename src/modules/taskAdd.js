@@ -8,24 +8,21 @@ const projectsArray = [];
 const checkTaskExists = ()=>{
     const tasksSection = document.querySelector(".tasks");
     const bgImage = document.querySelector(".bg-image");
-    if(tasksSection.children[0].textContent === "No Task Yet!"){// check if there are any task
-        tasksSection.children[0].remove();// if task removes the h1
+    if(tasksSection.childElementCount > 1){// check if there are any task
         bgImage.src = bgIconAfter;// chnages bg image
     }
     else if(tasksSection.childElementCount === 1){
-        const freeTimePara = document.createElement("h1");
-        freeTimePara.textContent = "No Task Yet!";
-        tasksSection.insertBefore(freeTimePara, tasksSection.children[0]);
         bgImage.src = bgIconBefore;
     }
 }
 
 const Task = class{// constructor for collecting newTask info
-    constructor(project,title, date, type){
+    constructor(project,title, date, type, status){
         this.project = project
         this.title = title;
         this.date = date;
         this.type = type;
+        this.status = status;
     }
     
     addingNewTask(){// creates and appends new task 
@@ -52,6 +49,10 @@ const Task = class{// constructor for collecting newTask info
         const deleteIcon = new Image();
         deleteIcon.src = cross;
 
+        if(this.status === "complete"){
+            newTaskDiv.classList.add("complete");
+        }
+
         tasksSection.appendChild(newTaskDiv);
         newTaskDiv.appendChild(taskName);
         newTaskDiv.appendChild(taskDate);
@@ -62,7 +63,20 @@ const Task = class{// constructor for collecting newTask info
         checkTaskExists();
 
         doneIcon.addEventListener("click", ()=>{
-            ((doneIcon.parentNode).parentNode).classList.toggle("complete")
+            const completedTaskTitle = ((doneIcon.parentNode).parentNode).children[0].textContent;
+            for(let i =0; i<projectsArray.length;i+=1){ // chnages the status of the task 
+                if(completedTaskTitle === projectsArray[i].title){
+                    if(projectsArray[i].status === "complete"){
+                        projectsArray[i].status = "incomplete"
+                    }
+                    else if(projectsArray[i].status === "incomplete"){
+                        projectsArray[i].status = "complete";
+                    };
+                }
+            }
+            ((doneIcon.parentNode).parentNode).classList.toggle("complete");
+            // console.log(projectsArray);  
+
         })
 
         deleteIcon.addEventListener("click", ()=>{
@@ -91,10 +105,12 @@ const addNewTask = ()=>{
     const taskFormNameValue = taskFormName.value;
     const taskFormDateValue = taskFormDate.value
     const taskFormTypeValue = taskFormType.value
+    const status = "incomplete";
     const addTaskForm = document.querySelector(".add-task-form");
-    const newTask = new Task(taskProjectName ,taskFormNameValue, taskFormDateValue, taskFormTypeValue);
+    const newTask = new Task(taskProjectName ,taskFormNameValue, taskFormDateValue, taskFormTypeValue, status);
     newTask.addingNewTask();// calling function
     projectsArray.push(newTask);
+    // console.log(newTask);
 
     
     // projectsArray.push(taskTitle.children[0].textContent);
@@ -106,7 +122,7 @@ const addNewTask = ()=>{
     taskFormDate.value = new Date().toJSON().slice(0,10);
     taskFormType.value = "Normal";
     addTaskForm.classList.remove("adding");
-    console.log(projectsArray);
+    // console.log(projectsArray);
     // console.log(projectsObject);
 }
 
