@@ -33,6 +33,7 @@ const accessProjects = ()=>{ // access names of projects
             if(projectTitle.childNodes[1].textContent === project.textContent) return false;
             projectTitle.childNodes[1].textContent = project.textContent;
             sth();
+            return 0;
         })
     })
 }
@@ -53,6 +54,11 @@ const addProject = ()=>{// creates new project div and appends before the add bu
     newProjectButton.id = "project";
     newProjectButton.textContent = newProjectName.value;
     newProjectDiv.appendChild(newProjectButton);
+
+    const projectTitle = document.querySelector(".task-list");
+    projectTitle.childNodes[1].textContent = newProjectName.value;
+    sth();
+
     newProjectName.value= "";
     projectForm.classList.remove("show");
 
@@ -62,7 +68,6 @@ const addProject = ()=>{// creates new project div and appends before the add bu
 
     crossImage.addEventListener("click", ()=>{
         const deletedProjectName = (crossImage.parentNode).children[1].textContent;
-        const projectTitle = document.querySelector(".task-list");
         if(tasksSection.childElementCount === 1){
             (crossImage.parentNode).remove();
             projectTitle.childNodes[1].textContent = "Casual";
@@ -79,7 +84,6 @@ const addProject = ()=>{// creates new project div and appends before the add bu
             sth();
         }
     })
-    console.log(projectsArray)
     accessProjects();
 }
 
