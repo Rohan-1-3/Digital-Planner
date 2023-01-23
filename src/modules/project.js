@@ -9,6 +9,7 @@ const addButton = document.querySelector(".add-button");
 const newProjects = document.querySelector(".new-projects");
 const cancelButton = document.querySelector(".cancle-button");
 const tasksSection = document.querySelector(".tasks");
+const projectsName = [];
 
 
 const sth = ()=>{
@@ -43,6 +44,12 @@ const accessProjects = ()=>{ // access names of projects
 
 const addProject = ()=>{// creates new project div and appends before the add button
     const newProjectName = document.querySelector(".projectAddPopup");
+    for(let i=0;i<projectsName.length;i+=1){// check if the project already exists
+        if(newProjectName.value.toLowerCase() === projectsName[i]){
+            newProjectName.style.borderColor = "red";
+            return false;
+        }
+    }
 
     const newProjectDiv = document.createElement("div");
     newProjectDiv.classList.add("new-project-title")
@@ -60,6 +67,9 @@ const addProject = ()=>{// creates new project div and appends before the add bu
     const projectTitle = document.querySelector(".task-list");
     projectTitle.childNodes[1].textContent = newProjectName.value;
     sth();
+    projectsName.push(newProjectName.value.toLowerCase());
+    // console.log(projectsName);
+    plusButton.classList.remove("hide");
 
     newProjectName.value= "";
     projectForm.classList.remove("show");
@@ -82,11 +92,13 @@ const addProject = ()=>{// creates new project div and appends before the add bu
                 }
             }
             (crossImage.parentNode).remove();
+            // when a project gets deleted project gets back to Casual
             projectTitle.childNodes[1].textContent = "Casual";
             sth();
         }
     })
     accessProjects();
+    return 0;
 }
 
 const projectAddingEvents =()=>{

@@ -3,7 +3,6 @@ import cross from "./images/cross.png";
 import bgIconAfter from "./images/task-area-image-after.png";
 import bgIconBefore from "./images/task-area-image.png";
 
-
 // const projectsObject = {};
 const projectsArray = [];
 const checkTaskExists = ()=>{
@@ -103,11 +102,18 @@ const addNewTask = ()=>{
     const taskProjectName = document.querySelector(".task-list").children[0].textContent;
 
     // gets value from the form
-    const taskFormNameValue = taskFormName.value;
+    const taskFormNameValue = `${taskFormName.value}(${taskProjectName})`;
     const taskFormDateValue = taskFormDate.value;
     const taskFormTypeValue = taskFormType.value;
     const status = "incomplete";
-    const addTaskForm = document.querySelector(".add-task-form");
+
+    for(let i=0;i<projectsArray.length;i+=1){// check if the project already exists
+        if(taskFormNameValue.toLowerCase() === projectsArray[i].title.toLowerCase()){
+            alert("Task Already Exists");
+            return false;
+        }
+    }
+
     const newTask = new Task(taskProjectName ,taskFormNameValue, taskFormDateValue, taskFormTypeValue, status);
     newTask.addingNewTask();// calling function
     projectsArray.push(newTask);
@@ -117,15 +123,16 @@ const addNewTask = ()=>{
     // projectsArray.push(taskTitle.children[0].textContent);
     // const uniqueProjects = [...new Set(projectsArray)];
     // projectsObject.task = uniqueProjects;
-
     // resetting form value
     taskFormName.value = "";
     taskFormDate.value = new Date().toJSON().slice(0,10);
     taskFormType.value = "Normal";
-    addTaskForm.classList.remove("adding");
     // console.log(projectsArray);
     // console.log(projectsObject);
+
+    return 0;
 }
+
 
 const addNewTaskEvent = ()=>{
     const addTaskButton = document.querySelector(".add-task-button");
@@ -136,6 +143,10 @@ const addNewTaskEvent = ()=>{
     addTaskButton.addEventListener("click", (e)=>{
         e.preventDefault();
         addNewTask();
+        const addTaskForm = document.querySelector(".add-task-form");
+        // 
+        addTaskForm.classList.remove("adding");
+        // resetting plus button and main container
         addKeyVertical.classList.remove("adding");
         addKeyHorizontol.classList.remove("adding");// animation for add icon 
         const mainContainer = document.querySelector(".main-container");
