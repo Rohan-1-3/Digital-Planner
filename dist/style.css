@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+/* menu bar animation */
 .menu {
     display: inline-block;
     cursor: pointer;
@@ -33,6 +33,15 @@
 .change .bar3 {
     transform: translate(0, -11px) rotate(45deg);
     background-color: red;
+}
+
+button{
+    cursor: pointer;
+}
+
+button:hover{
+    opacity: 0.5;
+    color: red;
 }
 
 .main-header{
