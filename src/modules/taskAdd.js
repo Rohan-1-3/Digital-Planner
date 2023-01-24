@@ -8,6 +8,9 @@ import bgIconBefore from "./images/task-area-image.png";
 import editTask from "./editTaskDetails";
 
 const projectsArray = [];
+for(let i=0;i<localStorage.length;i+=1){
+    projectsArray.push(JSON.parse(localStorage.getItem(i)));
+}
 const checkTaskExists = ()=>{
     const tasksSection = document.querySelector(".tasks");
     const bgImage = document.querySelector(".bg-image");
@@ -128,7 +131,8 @@ const addNewTask = ()=>{
     const newTask = new Task(taskProjectName ,taskFormNameValue, taskFormDateValue, taskFormTypeValue, status);
     newTask.addingNewTask();// calling function
     projectsArray.push(newTask);
-    console.log(projectsArray);
+    localStorage.setItem(localStorage.length, JSON.stringify(newTask));
+    // console.log(projectsArray);
 
     taskFormName.value = "";
     taskFormDate.value = new Date().toJSON().slice(0,10);
@@ -136,6 +140,13 @@ const addNewTask = ()=>{
     return 0;
 }
 
+const getTaskFromLocalStorage = ()=>{
+    for(let i=0;i<projectsArray.length;i+=1){
+        const newTask = new Task(projectsArray[i].project, projectsArray[i].title,
+                                projectsArray[i].date, projectsArray[i].type, projectsArray[i].status)
+        newTask.addingNewTask();
+    }
+}
 
 const addNewTaskEvent = ()=>{
     const addTaskButton = document.querySelector(".add-task-button");
@@ -167,4 +178,4 @@ const addNewTaskEvent = ()=>{
     })
 }
 
-export {addNewTaskEvent, projectsArray, Task, checkTaskExists};
+export {addNewTaskEvent, projectsArray, Task, checkTaskExists, getTaskFromLocalStorage};

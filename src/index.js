@@ -1,10 +1,11 @@
 import DOManimation from "./modules/initialDOM";
 import { accessProjects, projectAddingEvents } from "./modules/project";
-import { addNewTaskEvent } from "./modules/taskAdd";
-
+import { addNewTaskEvent, getTaskFromLocalStorage } from "./modules/taskAdd";
 
 DOManimation();
 accessProjects();
+getTaskFromLocalStorage();
 projectAddingEvents();
 addNewTaskEvent();
+
 
