@@ -26,6 +26,7 @@ const sth = ()=>{
         }
     }
     checkTaskExists();
+    editTask();
 }
 
 const accessProjects = ()=>{ // access names of projects
@@ -37,7 +38,6 @@ const accessProjects = ()=>{ // access names of projects
             if(projectTitle.childNodes[1].textContent === project.textContent) return false;
             projectTitle.childNodes[1].textContent = project.textContent;
             sth();
-            editTask();
             return 0;
         })
     })
@@ -131,5 +131,5 @@ const projectAddingEvents =()=>{
     });
 }
 
-export {accessProjects, projectAddingEvents}
+export {accessProjects, projectAddingEvents, sth}
 export {projectForm, newProjects};

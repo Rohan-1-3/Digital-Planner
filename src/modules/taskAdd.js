@@ -142,7 +142,6 @@ const addNewTask = ()=>{
     taskFormType.value = "Normal";
     // console.log(projectsArray);
     // console.log(projectsObject);
-    editTask();
     return 0;
 }
 
@@ -156,6 +155,7 @@ const addNewTaskEvent = ()=>{
     addTaskButton.addEventListener("click", (e)=>{
         e.preventDefault();
         addNewTask();
+        editTask();
         const addTaskForm = document.querySelector(".add-task-form");
         // 
         addTaskForm.classList.remove("adding");

@@ -7,6 +7,13 @@ const tasksSection = document.querySelector(".tasks");
 const taskProjectName = document.querySelector(".task-list").children[0];
 const addButton = document.querySelector(".add-task");
 
+const editDisable = ()=>{
+    const editIcons = document.querySelectorAll(".edit-icon");;
+    editIcons.forEach((editIcon)=>{
+        editIcon.classList.add("event");
+    })
+}
+
 const getAllTask= ()=>{
     const allTask = document.querySelector(".all-task");
     allTask.addEventListener("click",()=>{
@@ -22,6 +29,7 @@ const getAllTask= ()=>{
             newTask.addingNewTask();
         }
         checkTaskExists();
+        editDisable();
     });
 }
 
@@ -43,6 +51,7 @@ const getTodayTasks = ()=>{
             }
         }
         checkTaskExists();
+        editDisable()
     })
 }
 
@@ -68,6 +77,7 @@ const getWeekTasks = ()=>{
             }
         }
         checkTaskExists();
+        editDisable();
     })
 }
 export {getAllTask, getTodayTasks, getWeekTasks, addButton};
