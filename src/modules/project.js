@@ -11,7 +11,16 @@ const addButton = document.querySelector(".add-button");
 const newProjects = document.querySelector(".new-projects");
 const cancelButton = document.querySelector(".cancle-button");
 const tasksSection = document.querySelector(".tasks");
-const projectsName = [];
+
+const partialProjectName = []
+
+for(let i=0;i<localStorage.length;i+=1){
+    const sth = JSON.parse(localStorage.getItem(i)).project;
+    if(sth.toLowerCase() !== "casual"){
+    partialProjectName.push(sth);
+    }
+}
+const projectsName = [...new Set(partialProjectName)];
 
 
 const addingTaskToCurrentProject = ()=>{
@@ -44,74 +53,74 @@ const accessProjects = ()=>{ // access names of projects
     })
 }
 
-
-const addProject = ()=>{// creates new project div and appends before the add button
-    const newProjectName = document.querySelector(".projectAddPopup");
-
-    if(newProjectName.value === ""){
-        return false;
-    }
-    for(let i=0;i<projectsName.length;i+=1){// check if the project already exists
-        if(newProjectName.value.toLowerCase() === projectsName[i]){
-            newProjectName.style.borderColor = "red";
-            return false;
-        }
+const ProjectNameCreate = class{
+    constructor(title){
+        this.title = title;
     }
 
-    const newProjectDiv = document.createElement("div");
-    newProjectDiv.classList.add("new-project-title")
-    newProjects.insertBefore(newProjectDiv, newProjects.children[newProjects.childElementCount-1]);
+    addProject(){// creates new project div and appends before the add button
+    
+        const newProjectDiv = document.createElement("div");
+        newProjectDiv.classList.add("new-project-title");
+        newProjects.insertBefore(newProjectDiv, newProjects.children[newProjects.childElementCount-1]);
+    
+        const newProjectImage = new Image();
+        newProjectImage.src = taskIcon;
+        newProjectDiv.appendChild(newProjectImage);
+    
+        const newProjectButton = document.createElement("button");
+        newProjectButton.id = "project";
+        newProjectButton.textContent = this.title;
+        newProjectDiv.appendChild(newProjectButton);
+    
+        const projectTitle = document.querySelector(".task-list");// when new project is created changes the tab to new project
+        projectTitle.childNodes[1].textContent = this.title;
+        addingTaskToCurrentProject();
+    
+        const crossImage = new Image();
+        crossImage.src = crossIcon;
+        newProjectDiv.appendChild(crossImage);// crossIcon to remove the existing project
+        
+        projectForm.classList.remove("show");
+        plusButton.classList.remove("hide");
 
-    const newProjectImage = new Image();
-    newProjectImage.src = taskIcon;
-    newProjectDiv.appendChild(newProjectImage);
-
-    const newProjectButton = document.createElement("button");
-    newProjectButton.id = "project";
-    newProjectButton.textContent = newProjectName.value;
-    newProjectDiv.appendChild(newProjectButton);
-
-    const projectTitle = document.querySelector(".task-list");
-    projectTitle.childNodes[1].textContent = newProjectName.value;
-    addingTaskToCurrentProject();
-    projectsName.push(newProjectName.value.toLowerCase());
-    // console.log(projectsName);
-    plusButton.classList.remove("hide");
-
-    newProjectName.value= "";
-    projectForm.classList.remove("show");
-
-    const crossImage = new Image();
-    crossImage.src = crossIcon;
-    newProjectDiv.appendChild(crossImage);
-
-    crossImage.addEventListener("click", ()=>{
-        const deletedProjectName = (crossImage.parentNode).children[1].textContent;
-        if(tasksSection.childElementCount === 1){
-            (crossImage.parentNode).remove();
-            projectTitle.childNodes[1].textContent = "Casual";
-            addingTaskToCurrentProject();
-        }
-        else{
-            for(let i=0;i<=projectsArray.length;i+=1){// when project is deleted the project's all task gets deleted
-                if(deletedProjectName === projectsArray[i].project){
-                    projectsArray.splice(i,1);
-                }
+        crossImage.addEventListener("click", ()=>{
+            const deletedProjectName = (crossImage.parentNode).children[1].textContent;
+            if(tasksSection.childElementCount === 1){
+                (crossImage.parentNode).remove();
+                projectTitle.childNodes[1].textContent = "Casual";
+                addingTaskToCurrentProject();
             }
-
-            for(let i =0; i<=projectsName.length;i+=1){
-                if(deletedProjectName === projectsName[i]){
-                    projectsName.splice(i,1);
+            else{
+                for(let i=0;i<=projectsArray.length;i+=1){// when project is deleted the project's all task gets deleted
+                    if(deletedProjectName === projectsArray[i].project){
+                        projectsArray.splice(i,1);
+                        if(i === localStorage.length-1){ // removes the last element only from localstorage 
+                            localStorage.removeItem(i);
+                        }
+                        else{
+                            for(let aa = i; aa<localStorage.length; aa+=1){// removes the selected element and pushes up the index number
+                            localStorage.setItem(aa,localStorage.getItem(aa+1));
+                        }
+                        localStorage.removeItem(localStorage.length-1);// removing duplicated last element
+                    }
+                    }
                 }
+    
+                for(let i =0; i<=projectsName.length;i+=1){
+                    if(deletedProjectName === projectsName[i]){
+                        projectsName.splice(i,1);
+                    }
+                }
+                (crossImage.parentNode).remove();
+                // when a project gets deleted project gets back to Casual
+                projectTitle.childNodes[1].textContent = "Casual";
+                addingTaskToCurrentProject();
             }
-            (crossImage.parentNode).remove();
-            // when a project gets deleted project gets back to Casual
-            projectTitle.childNodes[1].textContent = "Casual";
-            addingTaskToCurrentProject();
-        }
-    })
-    accessProjects();
-    return 0;
+        })
+        accessProjects();
+        return 0;
+    }
 }
 
 const projectAddingEvents =()=>{
@@ -121,7 +130,25 @@ const projectAddingEvents =()=>{
     
     addButton.addEventListener("click", (e)=>{
         e.preventDefault();
-        addProject();// submits form
+        const newProjectName = document.querySelector(".projectAddPopup");
+    
+        if(newProjectName.value === ""){
+            return false;
+        }
+        for(let i=0;i<projectsName.length;i+=1){// check if the project already exists
+            if(newProjectName.value.toLowerCase() === projectsName[i]){
+                newProjectName.style.borderColor = "red";
+                return false;
+            }
+        }
+        const getNewProjectName = new ProjectNameCreate(newProjectName.value);
+        getNewProjectName.addProject();
+        projectsName.push(newProjectName.value.toLowerCase());
+        console.log(projectsName);
+        // resetting form
+
+        newProjectName.value= "";
+        return 0;
     })
     
     cancelButton.addEventListener("click", (e)=>{
@@ -132,5 +159,19 @@ const projectAddingEvents =()=>{
     });
 }
 
-export {accessProjects, projectAddingEvents, addingTaskToCurrentProject}
+const getProjectsName = ()=>{
+    
+    for(let i=0;i<projectsName.length;i+=1){
+        const getNewProjectName =  new ProjectNameCreate(projectsName[i]);
+        getNewProjectName.addProject();
+        const newProjectDivs = document.querySelectorAll(".new-project-title");
+        newProjectDivs.forEach((newProjectDiv)=>{
+            newProjectDiv.classList.add("show");
+        })
+        
+        
+    }
+}
+
+export {accessProjects, projectAddingEvents, addingTaskToCurrentProject, getProjectsName}
 export {projectForm, newProjects};

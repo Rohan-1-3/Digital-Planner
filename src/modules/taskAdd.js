@@ -95,6 +95,15 @@ const Task = class{// constructor for collecting newTask info
             for(let i=0;i<projectsArray.length;i+=1){// removes the task from the main array
                 if(removedTaskTitle === projectsArray[i].title){
                     projectsArray.splice(i,1);
+                    if(i === localStorage.length-1){ // removes the last element only from localstorage 
+                        localStorage.removeItem(i);
+                    }
+                    else{
+                        for(let aa = i; aa<localStorage.length; aa+=1){// removes the selected element and pushes up the index number
+                        localStorage.setItem(aa,localStorage.getItem(aa+1));
+                    }
+                    localStorage.removeItem(localStorage.length-1);// removing duplicated last element
+                }
                 }
             }
             ((deleteIcon.parentNode).parentNode).remove();
@@ -144,7 +153,9 @@ const getTaskFromLocalStorage = ()=>{
     for(let i=0;i<projectsArray.length;i+=1){
         const newTask = new Task(projectsArray[i].project, projectsArray[i].title,
                                 projectsArray[i].date, projectsArray[i].type, projectsArray[i].status)
-        newTask.addingNewTask();
+        if(projectsArray[i].project.toLowerCase() === "casual"){
+            newTask.addingNewTask();
+        }
     }
 }
 
