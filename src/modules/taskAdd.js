@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable import/no-cycle */
 import circle from "./images/circel.png";
 import cross from "./images/cross.png";
 import edit from "./images/edit.png";
@@ -5,7 +7,6 @@ import bgIconAfter from "./images/task-area-image-after.png";
 import bgIconBefore from "./images/task-area-image.png";
 import editTask from "./editTaskDetails";
 
-// const projectsObject = {};
 const projectsArray = [];
 const checkTaskExists = ()=>{
     const tasksSection = document.querySelector(".tasks");
@@ -69,6 +70,7 @@ const Task = class{// constructor for collecting newTask info
         taskButtons.appendChild(editIcon);
         checkTaskExists();
 
+        // events for removing and completing tasks
         doneIcon.addEventListener("click", ()=>{
             const completedTaskTitle = ((doneIcon.parentNode).parentNode).children[0].textContent;
             for(let i =0; i<projectsArray.length;i+=1){ // chnages the status of the task 
@@ -82,7 +84,6 @@ const Task = class{// constructor for collecting newTask info
                 }
             }
             ((doneIcon.parentNode).parentNode).classList.toggle("complete");
-            // console.log(projectsArray);  
 
         })
 
@@ -90,11 +91,9 @@ const Task = class{// constructor for collecting newTask info
             const removedTaskTitle = ((deleteIcon.parentNode).parentNode).children[0].textContent;
             for(let i=0;i<projectsArray.length;i+=1){// removes the task from the main array
                 if(removedTaskTitle === projectsArray[i].title){
-                    // console.log(i);
                     projectsArray.splice(i,1);
                 }
             }
-            // console.log(projectsArray);
             ((deleteIcon.parentNode).parentNode).remove();
             checkTaskExists();
         })
@@ -130,18 +129,10 @@ const addNewTask = ()=>{
     newTask.addingNewTask();// calling function
     projectsArray.push(newTask);
     console.log(projectsArray);
-    // console.log(newTask);
 
-    
-    // projectsArray.push(taskTitle.children[0].textContent);
-    // const uniqueProjects = [...new Set(projectsArray)];
-    // projectsObject.task = uniqueProjects;
-    // resetting form value
     taskFormName.value = "";
     taskFormDate.value = new Date().toJSON().slice(0,10);
     taskFormType.value = "Normal";
-    // console.log(projectsArray);
-    // console.log(projectsObject);
     return 0;
 }
 
@@ -157,7 +148,7 @@ const addNewTaskEvent = ()=>{
         addNewTask();
         editTask();
         const addTaskForm = document.querySelector(".add-task-form");
-        // 
+
         addTaskForm.classList.remove("adding");
         // resetting plus button and main container
         addKeyVertical.classList.remove("adding");
@@ -176,5 +167,4 @@ const addNewTaskEvent = ()=>{
     })
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export {addNewTaskEvent, projectsArray, Task, checkTaskExists};

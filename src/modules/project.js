@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import taskIcon from "./images/task_FILL0_wght400_GRAD0_opsz48.png";
 import crossIcon from "./images/cross.png";
 import { Task, projectsArray, checkTaskExists } from "./taskAdd";
@@ -13,7 +14,7 @@ const tasksSection = document.querySelector(".tasks");
 const projectsName = [];
 
 
-const sth = ()=>{
+const addingTaskToCurrentProject = ()=>{
     while(tasksSection.childElementCount>1){// removes the current projects tasks for new selected project
         tasksSection.lastChild.remove();
     }
@@ -37,7 +38,7 @@ const accessProjects = ()=>{ // access names of projects
             plusButton.classList.remove("hide");
             if(projectTitle.childNodes[1].textContent === project.textContent) return false;
             projectTitle.childNodes[1].textContent = project.textContent;
-            sth();
+            addingTaskToCurrentProject();
             return 0;
         })
     })
@@ -72,7 +73,7 @@ const addProject = ()=>{// creates new project div and appends before the add bu
 
     const projectTitle = document.querySelector(".task-list");
     projectTitle.childNodes[1].textContent = newProjectName.value;
-    sth();
+    addingTaskToCurrentProject();
     projectsName.push(newProjectName.value.toLowerCase());
     // console.log(projectsName);
     plusButton.classList.remove("hide");
@@ -89,7 +90,7 @@ const addProject = ()=>{// creates new project div and appends before the add bu
         if(tasksSection.childElementCount === 1){
             (crossImage.parentNode).remove();
             projectTitle.childNodes[1].textContent = "Casual";
-            sth();
+            addingTaskToCurrentProject();
         }
         else{
             for(let i=0;i<=projectsArray.length;i+=1){// when project is deleted the project's all task gets deleted
@@ -106,7 +107,7 @@ const addProject = ()=>{// creates new project div and appends before the add bu
             (crossImage.parentNode).remove();
             // when a project gets deleted project gets back to Casual
             projectTitle.childNodes[1].textContent = "Casual";
-            sth();
+            addingTaskToCurrentProject();
         }
     })
     accessProjects();
@@ -131,5 +132,5 @@ const projectAddingEvents =()=>{
     });
 }
 
-export {accessProjects, projectAddingEvents, sth}
+export {accessProjects, projectAddingEvents, addingTaskToCurrentProject}
 export {projectForm, newProjects};

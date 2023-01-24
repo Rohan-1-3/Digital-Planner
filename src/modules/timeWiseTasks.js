@@ -1,5 +1,5 @@
+/* eslint-disable import/no-cycle */
 import isSameISOWeek from "date-fns/isSameISOWeek";
-import editTask from "./editTaskDetails";
 import { checkTaskExists, projectsArray, Task } from "./taskAdd";
 
 
@@ -7,7 +7,7 @@ const tasksSection = document.querySelector(".tasks");
 const taskProjectName = document.querySelector(".task-list").children[0];
 const addButton = document.querySelector(".add-task");
 
-const editDisable = ()=>{
+const editDisable = ()=>{ // disabling edit button in timeWise Sections
     const editIcons = document.querySelectorAll(".edit-icon");;
     editIcons.forEach((editIcon)=>{
         editIcon.classList.add("event");
