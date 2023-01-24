@@ -353,3 +353,7 @@
 .add-task.hide{
     visibility: hidden;
 }
+
+.edit-icon.event{
+    pointer-events: none;
+}
