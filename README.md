@@ -2,7 +2,11 @@ Here's a live preview of the code here-> <a href="https://rohan-1-3.github.io/Di
 
 <h2>Languages and Tools used-></h2>
 <ul>
-<li>![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)</li>
+<li>
+
+![HTML](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
+
+</li>
 <li>![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)</li>
 <li>![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)</li>
 </br>
